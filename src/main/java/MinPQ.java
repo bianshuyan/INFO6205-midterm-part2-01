@@ -153,10 +153,20 @@ public class MinPQ<Key> implements Iterable<Key> {
 
     private void swim(int k) {
         //STUDENT TODO
+        while ((k > 1) && greater(k / 2, k)) {
+            exch(k/2, k);
+            k = k / 2;
+        }
     }
 
     private void sink(int k) {
         //STUDENT TODO
+        while (2 * k <= n) {
+            int j = 2 * k;
+            if ((j+1 <= n) && greater(j, j+1)) j = j+1;
+            if (greater(k, j)) exch(k, j);
+            k = j;
+        }
     }
 
    /***************************************************************************
